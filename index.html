@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio website for Saalim Abdi, a Computer Engineering student.">
+  <title>Portfolio Website</title>
+  <link rel="icon" href="./assets/images/Me.jpg" type="image/jpeg">
+
+  <style>
+    img {
+      border: 5px dotted black;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1><b>Saalim Abdi</b></h1>
+    <h2>Welcome to my Portfolio Site!</h2>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="experience.html">Experiences</a></li>
+      <li><a href="project.html">Projects</a></li>
+      <li><a href="resume.html">Resume</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <img src="./assets/images/Me.jpg" alt="Profile Image" width="200">
+    <h3><u>Computer Engineering Student</u></h3>
+  </main>
+
+  <footer>
+    <form>
+      <fieldset>
+        <legend>Contact Form</legend>
+        <label for="name">Name:</label>
+        <input type="text" id="name"><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email"><br><br>
+
+        <label for="message">Message:</label>
+        <textarea id="message"></textarea><br><br>
+
+        <button type="submit">Send</button>
+      </fieldset>
+    </form>
+  </footer>
+  <script>
+    console.log("Portfolio site loaded");
+  </script>
+  <noscript>
+    <p>Your browser has JavaScript disabled. Some features may not work properly.</p>
+  </noscript>
+</body>
+</html>
