@@ -4,9 +4,18 @@ document.addEventListener('DOMContentLoaded', function() {
   const fontSelect = document.getElementById('fontSelect');
   const applyBtn = document.getElementById('applyCustom');
   const html = document.documentElement;
+  const themePanel = document.querySelector('.custom-theme-panel');
+  const themePanelHeading = themePanel ? themePanel.querySelector('h3') : null;
   
   if (!bgColorInput || !textColorInput || !fontSelect || !applyBtn) {
     return;
+  }
+  
+  // Make panel collapsible
+  if (themePanelHeading && themePanel) {
+    themePanelHeading.addEventListener('click', function() {
+      themePanel.classList.toggle('collapsed');
+    });
   }
   
   applyBtn.addEventListener('click', function() {
