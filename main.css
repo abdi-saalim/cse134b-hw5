@@ -1,6 +1,39 @@
 :root {
     --light-grey: #f2f2f2;
     --hover-blue: color(display-p3 0.65 0.80 1);
+
+    --bg-color: #f2f2f2;
+    --text-color: #000000;
+    --card-bg: #ffffff;
+    --footer-bg: #e6e6e6;
+    --nav-bg: #ffffff;
+    --nav-border: #bcd8ff;
+    --nav-text: #000000;
+    --nav-hover: color(display-p3 0.65 0.80 1);
+    --border-color: #bcd8ff;
+    --project-bg: #ffffff;
+    --experience-bg: #ffffff;
+    --experience-border: #000000;
+    --resume-border: gray;
+    --about-border: rgb(101, 101, 148);
+}
+
+[data-theme="dark"] {
+    /* Dark theme */
+    --bg-color: #1a1a1a;
+    --text-color: #ffffff;
+    --card-bg: #2d2d2d;
+    --footer-bg: #2d2d2d;
+    --nav-bg: #2d2d2d;
+    --nav-border: #4a5568;
+    --nav-text: #ffffff;
+    --nav-hover: #5a6c7d;
+    --border-color: #4a5568;
+    --project-bg: #2d2d2d;
+    --experience-bg: #2d2d2d;
+    --experience-border: #ffffff;
+    --resume-border: #888888;
+    --about-border: #6b6b9e;
 }
 
 /* Custom scrollbar (Baseline 2024 feature) */
@@ -11,12 +44,14 @@ html {
 }
 
 body{
-    background-color: var(--light-grey, #ffffff);
+    background-color: var(--bg-color);
+    color: var(--text-color);
     min-height: 100dvh;
 }
 
 .footer {
-    background: #e6e6e6;
+    background: var(--footer-bg);
+    color: var(--text-color);
     padding: 1rem;
     margin-top: 1rem;
     text-align: center;
@@ -89,17 +124,17 @@ body{
 
 .main-nav a {
     padding: 0.5rem 1.2rem;
-    background: white;
-    border: 2px solid #bcd8ff;
+    background: var(--nav-bg);
+    border: 2px solid var(--nav-border);
     border-radius: 50px;
     text-decoration: none;
-    color: black;
+    color: var(--nav-text);
     font-weight: 600;
     transition: background 0.3s ease;
 }
 
 .main-nav :is(a:hover, a:focus) {
-    background: var(--hover-blue, lightblue);
+    background: var(--nav-hover);
 }
 
 /* CSS for Project Page */
@@ -120,8 +155,9 @@ body{
 }
 
 .project-card {
-    background: white;
-    border: 2px solid #bcd8ff;
+    background: var(--project-bg);
+    color: var(--text-color);
+    border: 2px solid var(--border-color);
     border-radius: 10px;
     padding: 1rem;
     text-align: left;
@@ -164,11 +200,11 @@ body{
 
 .resume-button{
     padding: 0.5rem 1.2rem;
-    background: white;
-    border: 2px solid gray;
+    background: var(--card-bg);
+    border: 2px solid var(--resume-border);
     border-radius: 50px;
     text-decoration: none;
-    color: black;
+    color: var(--text-color);
     font-weight: 600;
     display: block;
     width: fit-content;
@@ -176,7 +212,7 @@ body{
 }
 
 .resume-button:hover{
-    background-color: lightblue;
+    background-color: var(--nav-hover);
 }
 
 #resume-spacing{
@@ -188,7 +224,7 @@ body{
     display: block;
     margin: 0 auto;      
     width: 38%;          
-    border: 2px solid gray;
+    border: 2px solid var(--resume-border);
     border-radius: 10px;
 }
 
@@ -201,16 +237,18 @@ body{
 
 .experience-container {
     padding: 1rem;
+    margin-left: 250px;
 }
 
 .experience{
     border-radius: 10px;
-    border: 2px solid black;
+    border: 2px solid var(--experience-border);
     padding: 1rem 2rem;
     margin: 2rem;           
     box-shadow: 0 0 10px gray;
     max-width: 900px;          
-    background: white;           
+    background: var(--experience-bg);
+    color: var(--text-color);
 }
 
 /* CSS for About Page */
@@ -228,12 +266,13 @@ body{
     align-items: center;
     gap: 3rem;
     margin: 0 auto;
+    margin-left: 250px;
     padding: 1.5rem;
     max-width: 1000px;
 }
 
 .about-section:has(img) {
-    border: 2px solid rgb(101, 101, 148);
+    border: 2px solid var(--about-border);
     border-radius: 12px;
     padding: 2rem;
 }
@@ -254,6 +293,91 @@ body{
 
 .extra{
     font-size: 1.1rem;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: background 0.3s ease;
+}
+
+.theme-toggle:hover {
+    background: var(--nav-hover);
+}
+
+/* CSS for Custom Theme Panel */
+.custom-theme-panel {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    z-index: 1000;
+    min-width: 200px;
+}
+
+.custom-theme-panel h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.custom-control {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.custom-control label {
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.custom-control input[type="color"] {
+    width: 100%;
+    height: 40px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.custom-control select {
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: var(--card-bg);
+    color: var(--text-color);
+}
+
+#applyCustom {
+    padding: 0.5rem 1rem;
+    background: var(--nav-hover);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--text-color);
+    width: 100%;
+}
+
+#applyCustom:hover {
+    opacity: 0.8;
 }
 
 

@@ -9,6 +9,31 @@
   <title>Resume</title>
 </head>
 <body>
+  <button class="theme-toggle" id="themeToggle">🌙</button>
+  
+  <div class="custom-theme-panel">
+    <h3>Customize Theme</h3>
+    <div class="custom-control">
+      <label for="bgColor">Background Color:</label>
+      <input type="color" id="bgColor" value="#f2f2f2">
+    </div>
+    <div class="custom-control">
+      <label for="textColor">Text Color:</label>
+      <input type="color" id="textColor" value="#000000">
+    </div>
+    <div class="custom-control">
+      <label for="fontSelect">Font:</label>
+      <select id="fontSelect">
+        <option value="Arial, sans-serif">Arial</option>
+        <option value="Times New Roman, serif">Times New Roman</option>
+        <option value="Georgia, serif">Georgia</option>
+        <option value="Verdana, sans-serif">Verdana</option>
+        <option value="Courier New, monospace">Courier New</option>
+      </select>
+    </div>
+    <button id="applyCustom">Apply</button>
+  </div>
+  
   <header>
     <h1 class="resume-header">Resume</h1>
     <nav class="main-nav">
@@ -35,6 +60,9 @@
     <p><img src="./assets/logos/location.svg" class="icon"> San Diego, CA</p>
     <p>© 2025 Saalim Abdi</p>
   </footer>
-  
+
+  <script src="theme.js"></script>
+  <script src="view-transition.js"></script>
+  <script src="custom-theme.js"></script>
 </body>
 </html>

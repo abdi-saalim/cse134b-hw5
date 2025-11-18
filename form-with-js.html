@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Form</title>
+  <link rel="stylesheet" href="main.css">
+  <style>
+    main {
+      max-width: 500px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: var(--card-bg, white);
+      color: var(--text-color, black);
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-field label {
+      font-weight: bold;
+    }
+
+    .form-field input,
+    .form-field textarea {
+      padding: 0.5rem;
+      border: 2px solid var(--border-color, #ccc);
+      border-radius: 4px;
+      background: var(--card-bg, white);
+      color: var(--text-color, black);
+    }
+
+    .form-field input:invalid,
+    .form-field textarea:invalid {
+      border-color: red;
+    }
+
+    .form-field input:valid,
+    .form-field textarea:valid {
+      border-color: green;
+    }
+
+    .form-field textarea {
+      min-height: 100px;
+    }
+
+    .char-counter {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .char-counter.warning {
+      color: orange;
+      font-weight: bold;
+    }
+
+    .char-counter.error {
+      color: red;
+      font-weight: bold;
+    }
+
+    button {
+      padding: 0.75rem;
+      background-color: var(--nav-hover, #bcd8ff);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--text-color, black);
+    }
+
+    output {
+      display: block;
+      margin-top: 1rem;
+      padding: 0.5rem;
+    }
+
+    #error-output {
+      color: red;
+    }
+
+    #info-output {
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle" id="themeToggle">🌙</button>
+  
+  <div class="custom-theme-panel">
+    <h3>Customize Theme</h3>
+    <div class="custom-control">
+      <label for="bgColor">Background Color:</label>
+      <input type="color" id="bgColor" value="#f2f2f2">
+    </div>
+    <div class="custom-control">
+      <label for="textColor">Text Color:</label>
+      <input type="color" id="textColor" value="#000000">
+    </div>
+    <div class="custom-control">
+      <label for="fontSelect">Font:</label>
+      <select id="fontSelect">
+        <option value="Arial, sans-serif">Arial</option>
+        <option value="Times New Roman, serif">Times New Roman</option>
+        <option value="Georgia, serif">Georgia</option>
+        <option value="Verdana, sans-serif">Verdana</option>
+        <option value="Courier New, monospace">Courier New</option>
+      </select>
+    </div>
+    <button id="applyCustom">Apply</button>
+  </div>
+  
+  <main>
+    <h1>Contact Form</h1>
+    <form class="contact-form" id="contactForm" action="https://httpbin.org/post" method="post" novalidate>
+      <div class="form-field">
+        <label for="name">Name <span style="color: red;">*</span>:</label>
+        <input type="text" id="name" name="name" required minlength="2" maxlength="50" pattern="[A-Za-z\s\-]+">
+      </div>
+
+      <div class="form-field">
+        <label for="email">Email <span style="color: red;">*</span>:</label>
+        <input type="email" id="email" name="email" required minlength="5" maxlength="100">
+      </div>
+
+      <div class="form-field">
+        <label for="comments">Comments <span style="color: red;">*</span>:</label>
+        <textarea id="comments" name="comments" required minlength="10" maxlength="500"></textarea>
+        <div class="char-counter" id="charCounter">500 characters remaining</div>
+      </div>
+
+      <input type="hidden" name="possible_bot" value="true">
+      <input type="hidden" name="form-errors" id="formErrorsInput">
+
+      <button type="submit">Submit</button>
+
+      <output id="error-output"></output>
+      <output id="info-output"></output>
+    </form>
+  </main>
+
+  <script>
+    let form_errors = [];
+
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const commentsInput = document.getElementById('comments');
+    const charCounter = document.getElementById('charCounter');
+    const errorOutput = document.getElementById('error-output');
+    const infoOutput = document.getElementById('info-output');
+    const form = document.getElementById('contactForm');
+    const formErrorsInput = document.getElementById('formErrorsInput');
+
+    
+    nameInput.addEventListener('input', function(e) {
+      const value = e.target.value;
+      const pattern = /^[A-Za-z\s\-]*$/;
+      const lastChar = value[value.length - 1];
+      
+      if (lastChar && !pattern.test(value)) {
+        e.target.style.backgroundColor = '#ffcccc';
+        setTimeout(function() {
+          e.target.style.backgroundColor = '';
+        }, 500);
+        
+        errorOutput.textContent = 'Illegal character entered. Only letters, spaces, and hyphens are allowed.';
+        setTimeout(function() {
+          errorOutput.textContent = '';
+        }, 2000);
+        
+        e.target.value = value.slice(0, -1);
+      }
+    });
+
+    
+    commentsInput.addEventListener('input', function(e) {
+      const length = e.target.value.length;
+      const maxLength = 500;
+      const remaining = maxLength - length;
+      
+      charCounter.classList.remove('warning', 'error');
+      
+      if (length > maxLength) {
+        charCounter.classList.add('error');
+        charCounter.textContent = 'Character limit exceeded!';
+      } else if (remaining <= 50) {
+        charCounter.classList.add('warning');
+        charCounter.textContent = remaining + ' characters remaining';
+      } else {
+        charCounter.textContent = remaining + ' characters remaining';
+      }
+    });
+
+    
+    form.addEventListener('submit', function(e) {
+      const current_errors = [];
+      
+      if (!nameInput.checkValidity()) {
+        let nameError = 'must be at least 2 characters';
+        if (nameInput.value.length === 0) {
+          nameError = 'is required';
+        } else if (nameInput.value.length < 2) {
+          nameError = 'must be at least 2 characters';
+        } else if (!nameInput.validity.valid) {
+          nameError = 'only letters, spaces, and hyphens allowed';
+        }
+        current_errors.push({
+          field: 'name',
+          error: nameError
+        });
+      }
+      
+      if (!emailInput.checkValidity()) {
+        let emailError = 'must include @';
+        if (emailInput.value.length === 0) {
+          emailError = 'is required';
+        } else if (!emailInput.value.includes('@')) {
+          emailError = 'must include @';
+        } else {
+          emailError = 'must be a valid email';
+        }
+        current_errors.push({
+          field: 'email',
+          error: emailError
+        });
+      }
+      
+      if (!commentsInput.checkValidity()) {
+        let commentsError = 'must be at least 10 characters';
+        if (commentsInput.value.length === 0) {
+          commentsError = 'is required';
+        } else if (commentsInput.value.length < 10) {
+          commentsError = 'must be at least 10 characters';
+        }
+        current_errors.push({
+          field: 'comments',
+          error: commentsError
+        });
+      }
+
+      if (commentsInput.value.length > 500) {
+        current_errors.push({
+          field: 'comments',
+          error: 'exceeds 500 character limit'
+        });
+      }
+
+      if (current_errors.length > 0) {
+        e.preventDefault();
+        form_errors = form_errors.concat(current_errors);
+        
+        let errorMessage = '';
+        current_errors.forEach(function(err, index) {
+          if (index > 0) errorMessage += ' | ';
+          errorMessage += 'Please fix ' + err.field + ' because it ' + err.error;
+        });
+        errorOutput.textContent = errorMessage;
+      } else {
+        infoOutput.textContent = 'Form submitted successfully!';
+      }
+      
+      formErrorsInput.value = JSON.stringify(form_errors);
+    });
+  </script>
+  <script src="theme.js"></script>
+  <script src="custom-theme.js"></script>
+</body>
+</html>

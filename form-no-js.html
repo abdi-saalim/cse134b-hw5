@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Form</title>
+  <link rel="stylesheet" href="main.css">
+  <style>
+    main {
+      max-width: 500px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: var(--card-bg, white);
+      color: var(--text-color, black);
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-field label {
+      font-weight: bold;
+    }
+
+    .form-field input,
+    .form-field textarea {
+      padding: 0.5rem;
+      border: 2px solid var(--border-color, #ccc);
+      border-radius: 4px;
+      background: var(--card-bg, white);
+      color: var(--text-color, black);
+    }
+
+    .form-field input:invalid,
+    .form-field textarea:invalid {
+      border-color: red;
+    }
+
+    .form-field input:valid,
+    .form-field textarea:valid {
+      border-color: green;
+    }
+
+    .form-field textarea {
+      min-height: 100px;
+    }
+
+    button {
+      padding: 0.75rem;
+      background-color: var(--nav-hover, #bcd8ff);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--text-color, black);
+    }
+
+    output {
+      display: block;
+      margin-top: 1rem;
+      padding: 0.5rem;
+    }
+
+    #error-output {
+      color: red;
+    }
+
+    #info-output {
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle" id="themeToggle">🌙</button>
+  
+  <div class="custom-theme-panel">
+    <h3>Customize Theme</h3>
+    <div class="custom-control">
+      <label for="bgColor">Background Color:</label>
+      <input type="color" id="bgColor" value="#f2f2f2">
+    </div>
+    <div class="custom-control">
+      <label for="textColor">Text Color:</label>
+      <input type="color" id="textColor" value="#000000">
+    </div>
+    <div class="custom-control">
+      <label for="fontSelect">Font:</label>
+      <select id="fontSelect">
+        <option value="Arial, sans-serif">Arial</option>
+        <option value="Times New Roman, serif">Times New Roman</option>
+        <option value="Georgia, serif">Georgia</option>
+        <option value="Verdana, sans-serif">Verdana</option>
+        <option value="Courier New, monospace">Courier New</option>
+      </select>
+    </div>
+    <button id="applyCustom">Apply</button>
+  </div>
+  
+  <main>
+    <h1>Contact Form</h1>
+    <form class="contact-form" action="https://httpbin.org/post" method="post">
+      <div class="form-field">
+        <label for="name">Name <span style="color: red;">*</span>:</label>
+        <input type="text" id="name" name="name" required minlength="2" maxlength="50" pattern="[A-Za-z\s\-]+">
+      </div>
+
+      <div class="form-field">
+        <label for="email">Email <span style="color: red;">*</span>:</label>
+        <input type="email" id="email" name="email" required minlength="5" maxlength="100">
+      </div>
+
+      <div class="form-field">
+        <label for="comments">Comments <span style="color: red;">*</span>:</label>
+        <textarea id="comments" name="comments" required minlength="10" maxlength="500"></textarea>
+      </div>
+
+      <input type="hidden" name="possible_bot" value="true">
+
+      <button type="submit">Submit</button>
+
+      <output id="error-output"></output>
+      <output id="info-output"></output>
+    </form>
+  </main>
+
+  <script src="theme.js"></script>
+  <script src="custom-theme.js"></script>
+</body>
+</html>
+
