@@ -16,6 +16,9 @@
     --experience-border: #000000;
     --resume-border: gray;
     --about-border: rgb(101, 101, 148);
+    --link-bg: #dcecff;
+    --link-color: blue;
+    --link-hover-bg: #bcd8ff;
 }
 
 [data-theme="dark"] {
@@ -34,6 +37,9 @@
     --experience-border: #ffffff;
     --resume-border: #888888;
     --about-border: #6b6b9e;
+    --link-bg: #4a5568;
+    --link-color: #90cdf4;
+    --link-hover-bg: #5a6c7d;
 }
 
 /* Custom scrollbar (Baseline 2024 feature) */
@@ -154,7 +160,8 @@ body{
     padding: 0 1rem;
 }
 
-.project-card {
+project-card {
+    display: block;
     background: var(--project-bg);
     color: var(--text-color);
     border: 2px solid var(--border-color);
@@ -163,29 +170,41 @@ body{
     text-align: left;
 }
 
-.project-card h4 {
+project-card h2 {
     margin-top: 0;
 }
 
-.project-card a{
+project-card .project-image {
     display: block;
-    margin: 0 auto;
+    margin-bottom: 0.75rem;
+}
+
+project-card .project-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+}
+
+project-card a {
+    display: block;
+    margin-top: 1rem;
     padding: 0.4rem 1rem;
-    background: #dcecff;
+    background: var(--link-bg);
     border-radius: 20px;
     cursor: pointer;
     font-weight: 600;
     width: fit-content;
     text-decoration: underline;
-    color:blue;
+    color: var(--link-color);
+    transition: background 0.3s ease;
 }
 
-.project-card a:hover {
-    background: #bcd8ff;
+project-card a:hover {
+    background: var(--link-hover-bg);
 }
 
-
-.center-card {
+project-card[center-card] {
     grid-column: 1 / 3;
     justify-self: center;
     width: 60%;
@@ -453,7 +472,7 @@ main {
         grid-template-columns: 1fr;
     }
 
-    .center-card {
+    project-card[center-card] {
         grid-column: auto;
         width: 100%;
     }

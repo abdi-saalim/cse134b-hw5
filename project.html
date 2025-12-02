@@ -50,32 +50,11 @@
   </header>
 
   <main>
-    <section class="projects-container">
-
-      <article class="project-card">
-        <h4><u>IoT Wardrobe Management Dashboard</u></h4>
-        <p>
-          Built a full-stack dashboard to manage wardrobe IoT devices and monitor real-time sensor data. Engineered secure user authentication and protected routes in the backend with FastAPI. Integrated MQTT for live ESP32 data streaming and an AI assistant via OpenAI API to recommend outfits. Designed a responsive, mobile-friendly UI and deployed the entire application using Docker.
-        </p>
-        <a href="https://github.com/abdi-saalim/http-chat-server" target="_blank">See the project here!</a>
-      </article>
-  
-      <article class="project-card">
-        <h4><u>HTTP Chat Server</u></h4>
-        <p>
-          Developed a lightweight HTTP server in C from scratch to handle real-time chat messages and reactions. Supported more than 100,000 messages using efficient manual memory management and custom data structures. Implemented HTTP request parsing, URL decoding, and proper routing to handle various endpoints. Ensured robustness and prevented memory leaks through meticulous error handling and memory cleanup.
-        </p>
-        <a href="https://github.com/abdi-saalim/http-chat-server" target="_blank">See the project here!</a>
-      </article>
-  
-      <article class="project-card  center-card">
-        <h4><u>Contact Manager</u></h4>
-        <p>
-          Built a client-side contact manager with full CRUD functionality using persistent browser local storage. Designed an intuitive and responsive UI to ensure a seamless user experience across devices. Implemented modular JavaScript for clean DOM manipulation and efficient event handling. Deployed the app via GitHub Pages with configured static routing and hosting.
-        </p>
-        <a href="https://github.com/abdi-saalim/Contact_manager" target="_blank">See the project here!</a>
-      </article>
-
+    <section style="text-align: center; margin: 2rem;">
+      <button id="loadLocal" style="margin: 0.5rem; padding: 0.5rem 1rem;">Load Local</button>
+      <button id="loadRemote" style="margin: 0.5rem; padding: 0.5rem 1rem;">Load Remote</button>
+    </section>
+    <section class="projects-container" id="projectsContainer">
     </section>
     
   </main>
@@ -91,6 +70,8 @@
     <p>© 2025 Saalim Abdi</p>
   </footer>
 
+  <script src="project-card.js"></script>
+  <script src="project-data.js"></script>
   <script src="theme.js"></script>
   <script src="view-transition.js"></script>
   <script src="custom-theme.js"></script>
