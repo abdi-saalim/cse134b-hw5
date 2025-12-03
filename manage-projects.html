@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bubblegum+Sans&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+Bhaiksuki&family=Share+Tech&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="main.css">
+  <link rel="icon" href="./assets/images/portfolio.png">
+  <title>Manage Projects</title>
+</head>
+<body>
+  <button class="theme-toggle" id="themeToggle">🌙</button>
+  
+  <div class="custom-theme-panel">
+    <h3>Customize Theme</h3>
+    <div class="custom-theme-panel-content">
+      <div class="custom-control">
+        <label for="bgColor">Background Color:</label>
+        <input type="color" id="bgColor" value="#f2f2f2">
+      </div>
+      <div class="custom-control">
+        <label for="textColor">Text Color:</label>
+        <input type="color" id="textColor" value="#000000">
+      </div>
+      <div class="custom-control">
+        <label for="fontSelect">Font:</label>
+        <select id="fontSelect">
+          <option value="Arial, sans-serif">Arial</option>
+          <option value="Times New Roman, serif">Times New Roman</option>
+          <option value="Georgia, serif">Georgia</option>
+          <option value="Verdana, sans-serif">Verdana</option>
+          <option value="Courier New, monospace">Courier New</option>
+        </select>
+      </div>
+      <button id="applyCustom">Apply</button>
+    </div>
+  </div>
+  
+  <header>
+    <h1 class="project-header">Manage Projects</h1>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="experience.html">Experiences</a></li>
+        <li><a href="project.html">Projects</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <form id="projectForm" style="max-width: 600px; margin: 2rem auto; padding: 1rem; background: var(--card-bg); border: 2px solid var(--border-color); border-radius: 10px;">
+      <p style="margin-bottom: 1rem;">
+        <label for="selectProject">Select Existing Project (optional):</label>
+        <select id="selectProject" style="width: 100%; padding: 0.5rem; margin-top: 0.25rem; box-sizing: border-box;">
+          <option value="">-- Select a project to edit/delete --</option>
+        </select>
+      </p>
+      
+      <div style="margin-bottom: 1rem;">
+        <label for="projectName">Project Name:</label>
+        <input type="text" id="projectName" required style="width: 100%; padding: 0.5rem; margin-top: 0.25rem; box-sizing: border-box;">
+      </div>
+      
+      <div style="margin-bottom: 1rem;">
+        <label for="projectDescription">Description:</label>
+        <textarea id="projectDescription" required style="width: 100%; padding: 0.5rem; margin-top: 0.25rem; min-height: 100px; box-sizing: border-box;"></textarea>
+      </div>
+      
+      <div style="margin-bottom: 1rem;">
+        <label for="projectImage">Image URL:</label>
+        <input type="text" id="projectImage" required style="width: 100%; padding: 0.5rem; margin-top: 0.25rem; box-sizing: border-box;">
+      </div>
+      
+      <div style="margin-bottom: 1rem;">
+        <label for="projectLink">Project Link:</label>
+        <input type="url" id="projectLink" required style="width: 100%; padding: 0.5rem; margin-top: 0.25rem; box-sizing: border-box;">
+      </div>
+      
+      <div style="margin-bottom: 1rem;">
+        <label for="projectLinkText">Link Text:</label>
+        <input type="text" id="projectLinkText" value="See the project here!" style="width: 100%; padding: 0.5rem; margin-top: 0.25rem; box-sizing: border-box;">
+      </div>
+      
+      <p style="display: flex; gap: 1rem; justify-content: center; margin: 0;">
+        <button type="button" id="createBtn" style="padding: 0.5rem 1rem; background: var(--link-bg); border: 2px solid var(--border-color); border-radius: 5px; cursor: pointer;">Create</button>
+        <button type="button" id="updateBtn" style="padding: 0.5rem 1rem; background: var(--link-bg); border: 2px solid var(--border-color); border-radius: 5px; cursor: pointer;">Update</button>
+        <button type="button" id="deleteBtn" style="padding: 0.5rem 1rem; background: var(--link-bg); border: 2px solid var(--border-color); border-radius: 5px; cursor: pointer;">Delete</button>
+      </p>
+      
+      <p id="message" style="margin-top: 1rem; text-align: center; color: green;"></p>
+    </form>
+  </main>
+
+  <footer class="footer">
+    <p><img src="./assets/logos/email.svg" class="icon" > saalimabdi23@gmail.com</p>
+    <p><img src="./assets/logos/phone.svg" class="icon"> 858-308-4454</p>
+    <p><img src="./assets/logos/location.svg" class="icon"> San Diego, CA</p>
+    <p>© 2025 Saalim Abdi</p>
+  </footer>
+
+  <script src="theme.js"></script>
+  <script src="view-transition.js"></script>
+  <script src="custom-theme.js"></script>
+  <script src="manage-projects.js"></script>
+</body>
+</html>
+
